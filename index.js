@@ -65,12 +65,11 @@ passport.use(
     secretOrKey: process.env.SECRET_KEY,
   },
   (jwtPayload, done) => {
-    Users.findOne({ username: jwtPayload.sub })  // Changed to jwtPayload.sub
+    Users.findOne({ username: jwtPayload.sub }) 
       .then((user) => {
         if (!user) {
-          return done(null, false);  // No user found
+          return done(null, false); 
         }
-        console.log(jwtPayload);
         return done(null, user);
       })
       .catch((err) => {
